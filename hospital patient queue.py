@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 class Patient:
     def __init__(self, name, severity="regular"):
         self.name = name
-        self.severity = severity  # "critical" or "regular"
+        self.severity = severity  
         self.arrival_time = datetime.now()
 
     def __str__(self):
@@ -13,20 +13,19 @@ class Patient:
 
 class HospitalQueue:
     def __init__(self):
-        self.critical_queue = []  # priority queue (heap)
-        self.regular_queue = deque()  # normal queue
+        self.critical_queue = []  
+        self.regular_queue = deque()  
 
     # Add patient
     def add_patient(self, patient):
         if patient.severity.lower() == "critical":
-            # priority = arrival timestamp (earlier = higher priority)
+          
             heapq.heappush(self.critical_queue, (patient.arrival_time, patient))
             print(f"🚨 Critical patient added: {patient.name}")
         else:
             self.regular_queue.append(patient)
             print(f"🩺 Regular patient added: {patient.name}")
 
-    # Serve next patient
     def serve_patient(self):
         if self.critical_queue:
             _, patient = heapq.heappop(self.critical_queue)
@@ -37,7 +36,7 @@ class HospitalQueue:
         else:
             print("⚠️ No patients in queue.")
 
-    # Display queues with estimated wait times
+   
     def display_queues(self):
         print("\n--- Hospital Queue Status ---")
 
@@ -46,7 +45,7 @@ class HospitalQueue:
             print("(none)")
         else:
             for i, (_, patient) in enumerate(self.critical_queue, start=1):
-                wait = timedelta(minutes=i*5)  # assume 5 min per patient
+                wait = timedelta(minutes=i*5) 
                 print(f"{patient.name} - Est. wait: {wait}")
 
         print("\nRegular Patients:")
@@ -57,7 +56,7 @@ class HospitalQueue:
                 wait = timedelta(minutes=(len(self.critical_queue)+i)*5)
                 print(f"{patient.name} - Est. wait: {wait}")
 
-# -------------------- Console Program --------------------
+
 def main():
     hospital = HospitalQueue()
 
@@ -90,3 +89,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
