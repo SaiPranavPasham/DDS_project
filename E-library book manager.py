@@ -1,6 +1,3 @@
-# ------------------------------
-# E-Library Book Management System
-# ------------------------------
 
 class Book:
     """A single book node in the linked list"""
@@ -63,7 +60,7 @@ class Inventory:
 class Action:
     """Action record for undo stack"""
     def __init__(self, action_type, book):
-        self.action_type = action_type  # "borrow" or "return"
+        self.action_type = action_type
         self.book = book
 
 
@@ -109,9 +106,7 @@ class ELibrary:
             print(f"↩️ Undo: Return undone for '{action.book.title}'")
 
 
-# ------------------------------
-# Main Console Program
-# ------------------------------
+
 def main():
     library = ELibrary()
 
@@ -153,3 +148,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
